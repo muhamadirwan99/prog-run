@@ -11,6 +11,8 @@ import { VitePWA } from 'vite-plugin-pwa';
  * - VitePWA(): membuat web bisa di-install ke home screen HP & jalan offline
  */
 export default defineConfig({
+  // Base path wajib sesuai nama repository GitHub Pages: https://muhamadirwan99.github.io/prog-run/
+  base: '/prog-run/',
   plugins: [
     react(),
     tailwindcss(),
@@ -22,6 +24,8 @@ export default defineConfig({
         short_name: 'Road210K',
         description:
           'Tracker progres lari 1 tahun (10:00 -> 6:00/km) 100% lokal dari Strava Bulk Export.',
+        start_url: '/prog-run/',
+        scope: '/prog-run/',
         theme_color: '#020617',
         background_color: '#020617',
         display: 'standalone',
