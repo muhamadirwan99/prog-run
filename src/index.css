@@ -1,0 +1,97 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+/**
+ * Konfigurasi Tema Global (mirip ThemeData di Flutter).
+ * Di Tailwind v4, blok @theme otomatis menghasilkan utility class seperti
+ * `font-display`, `font-mono`, `text-sport-lime`, dll.
+ */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Chakra Petch", "Inter", sans-serif;
+
+  --color-sport-lime: #a3e635;
+  --color-sport-emerald: #10b981;
+  --color-sport-cyan: #06b6d4;
+  --color-sport-dark: #020617;
+  --color-sport-card: #0f172a;
+  --color-sport-border: #1e293b;
+}
+
+/* Base layout */
+body {
+  background-color: #020617;
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar Dark Mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Kustomisasi Dark Theme untuk Peta Leaflet */
+.leaflet-container {
+  background: #090d16 !important;
+  font-family: var(--font-sans);
+}
+
+/* Filter dark-mode khusus layer tile OpenStreetMap (100% gratis tanpa API key),
+   sehingga polyline rute lime & marker Start/Finish tetap mempertahankan warna asli */
+.dark-osm-map .leaflet-tile-pane {
+  filter: invert(100%) hue-rotate(180deg) brightness(92%) contrast(92%) saturate(70%);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155;
+}
+
+.leaflet-control-attribution {
+  background: rgba(2, 6, 23, 0.78) !important;
+  color: #64748b !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #94a3b8 !important;
+}
+
+/* Animasi cincin SVG Countdown Timer */
+.timer-ring-circle {
+  transition: stroke-dashoffset 0.2s linear;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+@keyframes pulse-border {
+  0%,
+  100% {
+    border-color: rgba(163, 230, 53, 0.4);
+  }
+  50% {
+    border-color: rgba(163, 230, 53, 1);
+  }
+}
+
+.animate-pulse-lime {
+  animation: pulse-border 1.6s infinite;
+}
